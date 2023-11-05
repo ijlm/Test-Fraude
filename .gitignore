@@ -3,4 +3,5 @@ requiere.txt
 test_run.py
 _pycache_
 .pytest_cache
+mlruns
 
