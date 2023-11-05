@@ -1,0 +1,25 @@
+name: Docker Image CI
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}      
+    steps:
+    - uses: actions/checkout@v3
+    - name: Log in to Docker Hub
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag $DOCKER_USERNAME/dashbi:v1
+
+    - name: Run Unit Tests
+      run: |
+        pytest      
+
+    - name: Publish image to Docker Hub
+      run: docker push $DOCKER_USERNAME/fraudetestapi
