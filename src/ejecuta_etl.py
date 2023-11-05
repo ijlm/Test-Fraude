@@ -5,10 +5,9 @@ from sqlalchemy import create_engine
 import os
 
 
-
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-#si se tiene la data en una BD
+#si se tiene la data en una BD, esto es pensando en la producción donde los datos son etiquetdos y dejandos para el entrenamiento 
 def extract_data_from_sql_server(connection_string, query):
     engine = create_engine(connection_string)
     df = pd.read_sql(query, engine)
@@ -21,7 +20,7 @@ def extract_data_local(input_path):
 
 # Definir una función para aplicar las transformaciones
 def transform_data(df):
-    # Transformaciones
+    # Transformaciones que se aprendieron en la exploración
     df['fecha'] = pd.to_datetime(df['fecha'], format='%Y-%m-%d %H:%M:%S')
     df.drop(columns='o', inplace=True)
     df["p"] = np.where(df["p"] == "Y", 1, 0)
@@ -32,8 +31,7 @@ def transform_data(df):
     df['l'].fillna(df['l'].median(), inplace=True)
     df['m'].fillna(df['m'].median(), inplace=True)
     
-    # Definir la variable 'var' si es necesario
-    var = []  # Rellenar con los valores necesarios
+    var=pd.DataFrame(df[['g']].value_counts().head(4)).reset_index()['g'].values
     
     df['g'] = np.where(df['g'].isin(var), df['g'], 'otros')
     df = pd.concat([df, pd.get_dummies(df['g'], prefix='Country').astype(int)], axis=1)
