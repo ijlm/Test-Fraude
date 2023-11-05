@@ -1,3 +1,6 @@
-notebook/logs.logs
+notebook/logs.log
 requiere.txt
 test_run.py
+_pycache_
+.pytest_cache
+
