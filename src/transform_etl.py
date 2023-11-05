@@ -7,8 +7,8 @@ import os
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-#si se tiene la data en una BD, esto es pensando en la producción donde los datos son etiquetdos y dejandos para el entrenamiento 
-def extract_data_from_sql_server(connection_string, query):
+#si se tiene la data en una BD, esto es pensando en la producción donde los datos son etiquetdos y dejandos para el re-entrenamiento 
+def extract_data_db(connection_string, query):
     engine = create_engine(connection_string)
     df = pd.read_sql(query, engine)
     return df
@@ -48,9 +48,9 @@ def save_data_to_file(df, output_path):
 def etl_process():
 
     #En caso de conectar a BD ejecutar esta funcion 
-    connection_string = 'tu_conexion_a_SQL_Server'
-    query = 'SELECT * FROM tu_tabla'  # Reemplaza con tu consulta
-    #extracted_data = extract_data_from_sql_server(connection_string, query)
+    #connection_string = 'Driver={SQL Server Native Client 11.0};Server=tu_servidor;Database=tu_base_de_datos;Uid=tu_usuario;Pwd=tu_contraseña;'
+    #query = 'SELECT * FROM tu_tabla'  # Reemplaza con tu consulta
+    #extracted_data = extract_data_db(connection_string, query)
 
     input_path = os.path.join(current_dir, '../raw_data/MercadoLibre Data Scientist Technical Challenge - Dataset.csv')
     extracted_data = extract_data_local(input_path)
@@ -60,7 +60,7 @@ def etl_process():
     transformed_data = transform_data(extracted_data)
     
     # Escribir el DataFrame transformado en un archivo CSV
-    output_path = os.path.join(current_dir, '../gold_data/data_gold.csv')
+    output_path = os.path.join(current_dir, '../processed_data/data_processed.csv')
     save_data_to_file(transformed_data, output_path)
 
 if __name__ == "__main__":
