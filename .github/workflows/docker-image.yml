@@ -17,24 +17,23 @@ jobs:
       
     steps:
     - uses: actions/checkout@v3
-    - name: Log in to Docker Hub
-      env:
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag $DOCKER_USERNAME/dashbi:v1
 
     - name: Install Python and Dependencies
       run: |
         sudo apt-get update
         sudo apt-get install python3
-        pip install -r requirements.txt  # Reemplace requirements.txt con el nombre de su archivo de requerimientos
+        pip install -r requirements.txt 
       shell: bash
-
     - name: Run Unit Tests
       run: pytest
       
-    - name: Publish image to Docker Hub
-      run: docker push ivan1000/fraudetestapi:v01
+    - name: Log in to Docker Hub
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag $DOCKER_USERNAME/fraudetestapi
+    - name: Publish image to Docker Hub      
+      run: docker push $DOCKER_USERNAME/fraudetestapi
 
       
