@@ -63,5 +63,6 @@ def etl_process():
     output_path = os.path.join(current_dir, '../processed_data/data_processed.csv')
     save_data_to_file(transformed_data, output_path)
 
+
 if __name__ == "__main__":
     etl_process()

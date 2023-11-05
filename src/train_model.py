@@ -10,6 +10,7 @@ import os
 #directorio actual
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
+#metricas para evaluar los resultados del modelo 
 def evaluate_models(y_test, y_pred):    
     accuracy=accuracy_score(y_test, y_pred)
     precision =precision_score(y_test, y_pred)
@@ -19,6 +20,7 @@ def evaluate_models(y_test, y_pred):
     matrix=confusion_matrix(y_test, y_pred)
     return (accuracy,precision,recall,f1,roc_auc,matrix)
 
+#metrica que nos dara el corte optimo del modelo 
 def definir_corte_optimo(y_test, y_prob, costo_fp, costo_fn, beneficio_tp, beneficio_tn):
     corte = np.arange(0, 1, 0.01)     
     punto_optimo = None
@@ -35,6 +37,7 @@ def definir_corte_optimo(y_test, y_prob, costo_fp, costo_fn, beneficio_tp, benef
             punto_optimo = threshold    
     return punto_optimo
 
+#se entrenael modelo y se carga la información
 def process(data):        
     #cargamos el dataset procesado para el modelo 
     df=pd.read_csv(data)

@@ -11,4 +11,5 @@ SQLAlchemy==2.0.23
 xgboost==2.0.1
 imblearn==0.0
 lightgbm==4.1.0
+pytest==7.4.3
  
