@@ -37,6 +37,8 @@ def transform_data(df):
     df = pd.concat([df, pd.get_dummies(df['g'], prefix='Country').astype(int)], axis=1)
     df = df[df['e'] < df['e'].quantile(0.99)]
     df = df[df['f'] < df['f'].quantile(0.99)]
+
+    df['hour_early']=np.where((df.fecha.dt.hour>=0 ) & (df.fecha.dt.hour<5),1,0)
     
     return df
 

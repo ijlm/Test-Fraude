@@ -1,10 +1,10 @@
-notebook/logs.log
+notebook/*.log
 requiere.txt
 test_run.py
 _pycache_
 .pytest_cache
 mlruns
-test/__pycache__/
+test\__pycache__
 requiere.txt
 doc
 

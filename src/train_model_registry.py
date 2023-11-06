@@ -68,7 +68,7 @@ def process(data):
     }
 
     # Entrenar el modelo LightGBM
-    num_round = 1000
+    num_round = 900
     bst = lgb.train(params, train_data, num_round)
     y_pred = bst.predict(X_test)
 
