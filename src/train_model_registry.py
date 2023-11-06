@@ -8,6 +8,7 @@ from imblearn.over_sampling import SMOTE
 import os
 
 import mlflow
+# para ejecutar esta sección de codigo es neceario iniciar mlflow (mlflow ui), dado que no sea necesario esa la version sin registro.
 
 
 #directorio actual

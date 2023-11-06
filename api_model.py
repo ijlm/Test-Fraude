@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-# Carga el modelo LightGBM
+# Carga el modelo LightGBM, en este caso local, pero lo mismo se podria hacer desde el repositorio de modelos
 model_filename = 'model/modelo_lightgbm_fraude.txt'
 loaded_model = lgb.Booster(model_file=model_filename)
 
