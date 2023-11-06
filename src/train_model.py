@@ -58,10 +58,10 @@ def process(data):
     train_data = lgb.Dataset(X_train, label=y_train)
 
     params = {
-        "objective": "binary","metric": "binary_logloss","boosting_type": "gbdt",
-        "num_leaves": 31,"subsample_for_bin":200000,"max_depth":-1,
-        "min_child_samples":20, "min_child_weight":0.001,"learning_rate": 0.1,
-        "feature_fraction": 0.9,"n_jobs":-1,"boosting_type":'gbdt'
+            "objective": "binary","metric": "binary_logloss","boosting_type": "gbdt",
+            "num_leaves": 31,"subsample_for_bin":200000,"max_depth":-1,"importance_type":"split",
+            "min_child_samples":20, "min_child_weight":0.001,"learning_rate": 0.1,"n_estimators":100,
+            "feature_fraction": 0.9,"n_jobs":-1,"boosting_type":'gbdt',"random_state":123,"reg_alpha":0.0'
     }
 
     # Entrenar el modelo LightGBM
