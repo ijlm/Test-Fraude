@@ -6,5 +6,6 @@ _pycache_
 mlruns
 test\__pycache__
 requiere.txt
-doc
+notebook\simulador_ganancia.ipynb
+notebook\pruebas.csv
 

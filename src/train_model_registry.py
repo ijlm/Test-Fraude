@@ -46,16 +46,17 @@ def process(data):
     #cargamos el dataset procesado para el modelo 
     df=pd.read_csv(data)
     df['fecha']=pd.to_datetime(df.fecha,format='%Y-%m-%d %H:%M:%S')
-    df.drop(columns=['g','j','fecha'],inplace=True)
+    df.drop(columns=['g','j','fecha','p','Country_AR'],inplace=True)
 
     #realizamos el sobre muestreo que nos ayudara con un mejor modelo
     X=df.drop(columns='fraude')
     y=df.fraude
-    smote = SMOTE(sampling_strategy=0.3, random_state=42)
-    X_resampled, y_resampled = smote.fit_resample(X, y)
 
     #separamos los datos para la validación del modelo 
-    X_train, X_test, y_train, y_test = train_test_split(X_resampled,y_resampled , test_size=0.3, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X,y , test_size=0.3, random_state=42)
+
+    smote = SMOTE(sampling_strategy=0.1, random_state=42)
+    X_train, y_train = smote.fit_resample(X_train, y_train)    
 
     # Entrenar el modelo LightGBM, con los hiperparámetros del modelo
     train_data = lgb.Dataset(X_train, label=y_train)
@@ -68,13 +69,13 @@ def process(data):
     }
 
     # Entrenar el modelo LightGBM
-    num_round = 900
+    num_round = 300
     bst = lgb.train(params, train_data, num_round)
     y_pred = bst.predict(X_test)
 
     costo_fp = 1.0  # Costo de un falso positivo FP es todo ya que se pierde el ingreso por error del modelo
     costo_fn = 1.0  # Costo de un falso negativo FN es todo ya que el modelo no lo pudo detectar
-    beneficio_tp = 0.0  # Detectar el fraude es bueno no genera costos, pero no genera ganacia adicional al ingreso
+    beneficio_tp = 1  #reducir costos por fraudes
     beneficio_tn = 0.25  # Detectar los no fraudes correctamente ayuda a generar ese 25% adicional de ganacia
     threshold=definir_corte_optimo(y_test, y_pred, costo_fp, costo_fn, beneficio_tp, beneficio_tn)
 
