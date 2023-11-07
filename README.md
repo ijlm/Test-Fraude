@@ -2,7 +2,7 @@
 
 Este proyecto se centra en la detección de fraudes en transacciones de Mercado Libre utilizando técnicas de aprendizaje automático y análisis de datos. A continuación, se presenta una descripción general de los pasos y componentes clave del proyecto.
 
-![Ejemplo de Imagen](doc\proceso.JPG)
+![Ejemplo de Imagen](doc/proceso.JPG)
 
 
 ## Descripción General
