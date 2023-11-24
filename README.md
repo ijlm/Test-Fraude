@@ -1,13 +1,13 @@
-# Detección de Fraudes en Transacciones de Mercado Libre
+# Detección de Fraudes en Transacciones 
 
-Este proyecto se centra en la detección de fraudes en transacciones de Mercado Libre utilizando técnicas de aprendizaje automático y análisis de datos. A continuación, se presenta una descripción general de los pasos y componentes clave del proyecto.
+Este proyecto se centra en la detección de fraudes en transacciones  utilizando técnicas de aprendizaje automático y análisis de datos. A continuación, se presenta una descripción general de los pasos y componentes clave del proyecto.
 
 ![Ejemplo de Imagen](doc/proceso.JPG)
 
 
 ## Descripción General
 
-El objetivo principal de este proyecto es maximizar la ganancia al detectar fraudes en transacciones de Mercado Libre. Para lograr esto, se buscan equilibrar la precisión y el recall del modelo, con un enfoque particular en la detección de fraudes. A pesar de los desafíos, el resultado final muestra la robustez del modelo y proporciona información valiosa.
+El objetivo principal de este proyecto es maximizar la ganancia al detectar fraudes en transacciones. Para lograr esto, se buscan equilibrar la precisión y el recall del modelo, con un enfoque particular en la detección de fraudes. A pesar de los desafíos, el resultado final muestra la robustez del modelo y proporciona información valiosa.
 
 ## Pasos del Proyecto
 
