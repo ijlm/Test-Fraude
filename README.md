@@ -4,7 +4,6 @@ Este proyecto se centra en la detección de fraudes en transacciones  utilizando
 
 ![Ejemplo de Imagen](doc/proceso.JPG)
 
-
 ## Descripción General
 
 El objetivo principal de este proyecto es maximizar la ganancia al detectar fraudes en transacciones. Para lograr esto, se buscan equilibrar la precisión y el recall del modelo, con un enfoque particular en la detección de fraudes. A pesar de los desafíos, el resultado final muestra la robustez del modelo y proporciona información valiosa.
